@@ -1,0 +1,4 @@
+- Estudar arquitetura de sistemas e a comunicação dos serviços dentro de um cluster;
+- Entender o funcionamento básico do kubernetes;
+- Entender o que o service mesh resolve;
+- Realizar testes com o Istio de acordo com os recursos disponíves.
