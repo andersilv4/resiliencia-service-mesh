@@ -374,8 +374,8 @@ spec:
 
 Execute a aplicação e observe o tempo de espera antes de retornar um erro. Agora execute também o código abaixo. Como pode ver, ele configura a *DestinationRule* para aceitar 5 erros 5xx, bloqueando as tentativas por 30 segundos. É o exemplo do *circuit breaker*:
 
-```
-kubectl patch destinationrule aspnetcore-destination-rule --type merge --patch '
+```bash
+kubectl patch destinationrule aspnetcore-destinationrule --type merge --patch '
 spec:
   trafficPolicy:
     outlierDetection:

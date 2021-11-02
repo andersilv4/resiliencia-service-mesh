@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-a-service
+  labels:
+    app: app-a
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6000
+    targetPort: 80
+  selector:
+    app: app-a
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-a
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app-a
+        version: v1
+    spec:
+      containers:
+      - name: app-a
+        image: andysilv4/app-a
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-b-service
+  labels:
+    app: app-b
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6002
+    targetPort: 80
+  selector:
+    app: app-b
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-b
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app-b
+        version: v1
+    spec:
+      containers:
+      - name: app-b
+        image: andysilv4/app-b
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-c-service
+  labels:
+    app: app-c
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6004
+    targetPort: 80
+  selector:
+    app: app-c
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-c
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app-c
+        version: v1
+    spec:
+      containers:
+      - name: app-c
+        image: andysilv4/app-c
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
