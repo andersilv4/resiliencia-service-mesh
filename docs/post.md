@@ -2,7 +2,7 @@
 
 Muito provavelmente você já ouviu falar na arquitetura de microsserviços. Essa arquitetura consiste em aplicações, com escopo delimitado e de responsabilidade única, que são distribuídas na rede para formar um sistema maior e mais robusto. Como consequência, de maior complexidade também. Saber como administrar e organizar este tipo de sistema é uma tarefa muito importante (e difícil) para obter o melhor desempenho e garantir a disponibilidade de toda a aplicação. Nesse post quero tratar de um ponto bastante relevante para o desenvolvimento de software: resiliência. Iremos abordar como podemos aplicar algumas técnicas em aplicações .NET e irei começar a falar sobre o Service Mesh, que trata muito bem desse assunto, podendo ir além.
 
-## **RESILIÊNCIA**
+## **Resiliência**
 
 De uma forma geral, resiliência pode ser entendido como:
 
@@ -242,7 +242,7 @@ Para obter maiores informações sobre os recursos da biblioteca, acesse o [gith
 
 Cada linguagem de programação ou framework possui uma biblioteca que implementa esses padrões de resiliência. Durante o desenvolvimento, se aprofundando no assunto e seguindo as ideias apresentadas nesse post, a resiliência em suas aplicações poderão ser executadas com eficiência. Mas existem outras abordagens que independem de linguagem de programação e consegue obter os mesmos e ate melhores resultados.
 
-## **SERVICE MESH**
+## **Service Mesh**
 
 O Service Mesh é uma solução composta de ferramentas que permite gerenciar os diferentes componentes de uma aplicação e como eles se comunicam. Com o *service mesh*, ou malha de serviços, você consegue controlar diversos aspectos de sistemas distribuídos, como observabilidade, segurança, gerenciamento de trafego, este último promovendo o assunto desse post. Quando usamos o *service mesh* para tratar a resiliência de nossas aplicações, não é necessário configurar nada diretamente em nossos códigos. A malha de serviços é adicionada a infraestrutura da aplicação, habilitando uma camada que consegue controlar as interações internas. Essa camada por sua vez que ficará responsável por realizar os *retries*, ou até mesmo controlando o *circuit breaker*, sendo realizados automaticamente conforme configuração.
 
@@ -389,3 +389,9 @@ spec:
 ```
 
 Ao testar a aplicação novamente, temos o mesmo comportamento que obtivemos na aplicação .NET.
+
+# Conclusão
+
+A resiliência de aplicações parece mesmo ser simples de ser tratada. Mas acredito que não é só seguir os passos mostrados aqui para alcançá-la. Existem várias outras abordagens não mencionadas que valem a pena pesquisar. É muito interessante pensarmos sempre em formas de contornar problemas. Por exemplo, manter um cache dos dados para as aplicações responderem, mesmo que a aplicação fique inconsistente momentaneamente, são tipos de pensamentos super válidos. Temos que lembrar sempre: uma arquitetura com diversos pequenos sistemas devem ter estratégias especificas para cada caso. Os microsserviços devem ser desenvolvidos pensando no pior que pode acontecer entre suas comunicações.
+
+O service mesh é uma forma de tratar a resiliência de aplicações de uma forma muito diferente, porém padronizada. Tem diversas vantagens, como melhorar o gerenciamento das aplicações, mas também tem desvantagens por adicionar uma camada extra na infraestrutura. Deve se pensar bem se é necessário deixar cada vez mais complexa a arquitetura de nossas aplicações. Um service mesh aumenta (e muito) a observabilidade. Como foi visto rapidamente com o Kiali, temos o controle do tráfego, mas também é possivel configurar e ter controle sobre métricas, logs e visualições de dashboard com ferramentas como o Prometheus e o Grafana. Como dito, o tratamento da resiliência não é a única funcionalidade disponível dentro de um service mesh e considerar utilizá-lo depende da necessidade da arquitetura da aplicação.
